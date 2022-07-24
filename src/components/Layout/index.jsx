@@ -1,7 +1,6 @@
 import React from 'react';
 import TopHeader from './TopHeader';
 import MiddleHeader from './MiddleHeader';
-import './styles.css';
 import HeaderMain from './HeaderMain';
 import Slidder from './Slidder';
 import Brands from './Brands';
@@ -10,6 +9,10 @@ import Features from './Features';
 import Banners from './Banners';
 import Categories from './Categories';
 import NewsLetter from './NewsLetter';
+import Widgets from './Widgets';
+import './styles.css';
+import Footer from './Footer';
+import MenuBottom from './MenuBottom';
 
 const Layout = () => {
 	return (
@@ -28,9 +31,11 @@ const Layout = () => {
 				<Categories />
 			</main>
 			<footer>
-                <NewsLetter />
-				{/* <Footer /> */}
+				<NewsLetter />
+				<Widgets />
+				<Footer />
 			</footer>
+            <MenuBottom />
 		</div>
 	);
 };
