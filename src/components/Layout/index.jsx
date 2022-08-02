@@ -2,40 +2,28 @@ import React from 'react';
 import TopHeader from './TopHeader';
 import MiddleHeader from './MiddleHeader';
 import HeaderMain from './HeaderMain';
-import Slidder from './Slidder';
-import Brands from './Brands';
-import Trending from './Trending';
-import Features from './Features';
-import Banners from './Banners';
-import Categories from './Categories';
-import NewsLetter from './NewsLetter';
-import Widgets from './Widgets';
-import './styles.css';
-import Footer from './Footer';
-import MenuBottom from './MenuBottom';
+import Signup from './Footer/Signup';
+import FooterMiddle from './Footer/FooterMiddle';
+import FooterBottom from './Footer/FooterBottom';
 
-const Layout = () => {
+const Layout = ({ children }) => {
 	return (
-		<div id="page" className="site">
-			<header>
+		<div className="page-wrapper">
+			<header class="header header-14">
 				<TopHeader />
 				<MiddleHeader />
 				<HeaderMain />
 			</header>
-			<main>
-				<Slidder />
-				<Brands />
-				<Trending />
-				<Features />
-				<Banners />
-				<Categories />
+			<main className="main">
+				<div class="mb-lg-2"></div>
+				{children}
 			</main>
-			<footer>
-				<NewsLetter />
-				<Widgets />
-				<Footer />
+			<footer className="footer">
+				
+				<FooterMiddle />
+				<FooterBottom />
 			</footer>
-            <MenuBottom />
+			{/* <MenuBottom /> */}
 		</div>
 	);
 };
