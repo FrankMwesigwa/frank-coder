@@ -5,8 +5,8 @@ import Layout from '../components/Layout';
 
 const Login = lazy(() => import('../pages/Login'));
 const HomePage = lazy(() => import('../pages/HomePage'));
+const CartPage = lazy(() => import('../pages/Cart'));
 const ProductDetails = lazy(() => import('../pages/ProductDetails'));
-
 
 const ShopRoutes = () => (
 	<Suspense
@@ -20,6 +20,7 @@ const ShopRoutes = () => (
 			{/* <Route exact path="/login" component={Login} /> */}
 			<Route exact path="/" component={HomePage} />
 			<Route exact path="/login" component={Login} />
+			<Route exact path="/cart" component={CartPage} />
 			<Route exact path="/product" component={ProductDetails} />
 		</Switch>
 	</Suspense>

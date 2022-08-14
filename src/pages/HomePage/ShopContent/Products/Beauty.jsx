@@ -2,9 +2,9 @@ import React from 'react';
 import ProductCard from '../../../../components/Product';
 import LoadSpinner from '../../../../components/Spinner';
 
-const Men = ({ products }) => {
+const Beauty = ({ products }) => {
 	const menproducts = products.filter((product) =>
-		product.category ? product.category.category === 'Men' : ''
+		product.category ? product.category.category === 'Beauty' : ''
 	);
 	return (
 		<div class="products">
@@ -23,4 +23,4 @@ const Men = ({ products }) => {
 	);
 };
 
-export default Men;
+export default Beauty;

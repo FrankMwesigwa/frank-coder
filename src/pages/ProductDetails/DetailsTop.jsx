@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const DetailsTop = () => {
 	return (
@@ -170,15 +171,17 @@ const DetailsTop = () => {
 						</div>
 
 						<div class="product-details-action">
-						
-
 							<div class="details-action-wrapper">
-                            <a href="#" class="btn-product btn-cart">
-								<span>add to cart</span>
-							</a>
-								<a href="#" class="btn-product btn-wishlist" title="Wishlist">
+								<Link to="/cart" class="btn-product btn-cart">
+									<span>add to cart</span>
+								</Link>
+								<Link
+									href="/wishlist"
+									class="btn-product btn-wishlist"
+									title="Wishlist"
+								>
 									<span>Add to Wishlist</span>
-								</a>
+								</Link>
 							</div>
 						</div>
 

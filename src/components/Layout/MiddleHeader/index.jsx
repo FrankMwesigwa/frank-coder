@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const MiddleHeader = () => {
 	return (
@@ -52,7 +53,7 @@ const MiddleHeader = () => {
 								<div class="header-dropdown-link">
 									<div class="dropdown compare-dropdown">
 										<a
-											href="/html/molla/index-14.html#"
+											href="#"
 											class="dropdown-toggle"
 											role="button"
 											data-toggle="dropdown"
@@ -68,11 +69,7 @@ const MiddleHeader = () => {
 										<div class="dropdown-menu dropdown-menu-right">
 											<ul class="compare-products">
 												<li class="compare-product">
-													<a
-														href="/html/molla/index-14.html#"
-														class="btn-remove"
-														title="Remove Product"
-													>
+													<a href="#" class="btn-remove" title="Remove Product">
 														<i class="icon-close"></i>
 													</a>
 													<h4 class="compare-product-title">
@@ -82,11 +79,7 @@ const MiddleHeader = () => {
 													</h4>
 												</li>
 												<li class="compare-product">
-													<a
-														href="/html/molla/index-14.html#"
-														class="btn-remove"
-														title="Remove Product"
-													>
+													<a href="#" class="btn-remove" title="Remove Product">
 														<i class="icon-close"></i>
 													</a>
 													<h4 class="compare-product-title">
@@ -133,16 +126,13 @@ const MiddleHeader = () => {
 															<a href="#">Beige knitted elastic runner shoes</a>
 														</h4>
 														<span class="cart-product-info">
-															<span class="cart-product-qty">1</span>x $84.00
+															<span class="cart-product-qty">1</span>x 84,000
 														</span>
 													</div>
 
 													<figure class="product-image-container">
 														<a href="#" class="product-image">
-															<img
-																src="./Molla - Bootstrap eCommerce Template-7_files/product-1.jpg"
-																alt="product"
-															/>
+															<img src="images/013.jpg" alt="product" />
 														</a>
 													</figure>
 													<a href="#" class="btn-remove" title="Remove Product">
@@ -156,16 +146,13 @@ const MiddleHeader = () => {
 															<a href="#">Blue utility pinafore denim dress</a>
 														</h4>
 														<span class="cart-product-info">
-															<span class="cart-product-qty">1</span>x $76.00
+															<span class="cart-product-qty">1</span>x 76,000
 														</span>
 													</div>
 
 													<figure class="product-image-container">
 														<a href="#" class="product-image">
-															<img
-																src="./Molla - Bootstrap eCommerce Template-7_files/product-2.jpg"
-																alt="product"
-															/>
+															<img src="images/013.jpg" alt="product" />
 														</a>
 													</figure>
 													<a href="#" class="btn-remove" title="Remove Product">
@@ -176,17 +163,17 @@ const MiddleHeader = () => {
 
 											<div class="dropdown-cart-total">
 												<span>Total</span>
-												<span class="cart-total-price">$160.00</span>
+												<span class="cart-total-price">160,000</span>
 											</div>
 
 											<div class="dropdown-cart-action">
-												<a href="#" class="btn btn-primary">
+												<Link to="/cart" class="btn btn-primary">
 													View Cart
-												</a>
-												<a href="#" class="btn btn-outline-primary-2">
+												</Link>
+												<Link to="/" class="btn btn-outline-primary-2">
 													<span>Checkout</span>
 													<i class="icon-long-arrow-right"></i>
-												</a>
+												</Link>
 											</div>
 										</div>
 									</div>
@@ -199,11 +186,7 @@ const MiddleHeader = () => {
 			<div className="row d-xl-none d-lg-block">
 				<div className="col-lg-2">
 					<div>
-						<form
-							action="/html/molla/index-14.html#"
-							method="get"
-							class="mobile-search"
-						>
+						<form action="#" method="get" class="mobile-search">
 							<label for="mobile-search" class="sr-only">
 								Search
 							</label>

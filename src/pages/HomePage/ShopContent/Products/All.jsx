@@ -2,16 +2,13 @@ import React from 'react';
 import ProductCard from '../../../../components/Product';
 import LoadSpinner from '../../../../components/Spinner';
 
-const Men = ({ products }) => {
-	const menproducts = products.filter((product) =>
-		product.category ? product.category.category === 'Men' : ''
-	);
+const All = ({ products }) => {
 	return (
 		<div class="products">
 			<div class="row justify-content-center">
 				{products && products.length > 0 ? (
 					<>
-						{menproducts.map((product) => (
+						{products.map((product) => (
 							<ProductCard product={product} />
 						))}
 					</>
@@ -23,4 +20,4 @@ const Men = ({ products }) => {
 	);
 };
 
-export default Men;
+export default All;

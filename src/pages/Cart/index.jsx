@@ -4,27 +4,21 @@ import TopHeader from '../../components/Layout/TopHeader';
 import MiddleHeader from '../../components/Layout/MiddleHeader';
 import FooterMiddle from '../../components/Layout/Footer/FooterMiddle';
 import FooterBottom from '../../components/Layout/Footer/FooterBottom';
-import DetailsTop from './DetailsTop';
-import DetailsTab from './DetailsTab';
-import RelatedProducts from './RelatedProducts';
+import CartInfo from './CartInfo';
 
-const ProductDetails = () => {
+const CartPage = () => {
 	return (
 		<div className="page-wrapper">
 			<header class="header header-14">
 				<TopHeader />
 				<MiddleHeader />
-				{/* <HeaderMain /> */}
 			</header>
 			<main className="main">
 				<div class="mb-lg-2"></div>
 				<BreadCrumb />
-				<div class="page-content">
+				<div class="cart">
 					<div class="container">
-						<DetailsTop />
-						<DetailsTab />
-						<h2 class="title text-center mb-4">You May Also Like</h2>
-						<RelatedProducts />
+						<CartInfo />
 					</div>
 				</div>
 			</main>
@@ -37,4 +31,4 @@ const ProductDetails = () => {
 	);
 };
 
-export default ProductDetails;
+export default CartPage;
