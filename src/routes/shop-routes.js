@@ -21,7 +21,7 @@ const ShopRoutes = () => (
 			<Route exact path="/" component={HomePage} />
 			<Route exact path="/login" component={Login} />
 			<Route exact path="/cart" component={CartPage} />
-			<Route exact path="/product" component={ProductDetails} />
+			<Route exact path="/product/:id" component={ProductDetails} />
 		</Switch>
 	</Suspense>
 );

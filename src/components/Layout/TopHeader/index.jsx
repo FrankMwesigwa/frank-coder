@@ -1,68 +1,63 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Modal from '../../../components/ModalBox';
+import LoginPage from '../../../pages/Login';
+import Register from '../../../pages/Login/Register';
+import SellerPage from '../../../pages/Login/Seller.jsx';
 
 const TopHeader = () => {
+	const [user, setUser] = useState(true);
+	const [signIn, setSignIn] = useState(false);
+	const [seller, setSeller] = useState(false);
+	const [register, setRegister] = useState(false);
+
+	const signInModal = () => setSignIn(!signIn);
+	const registerModal = () => setRegister(!register);
+	const sellerModal = () => setSeller(!seller);
+
+	// const user = JSON.parse(localStorage.getItem('customer'));
+
 	return (
-		<div class="header-top d-none d-lg-block">
+		<div class="header-top">
 			<div class="container">
 				<div class="header-left">
-					<a href="tel:#">
-						<i class="ri-phone-line icon-phone"></i>Call: +256 779 825 056
-					</a>
+					<button onClick={sellerModal}>Register As a Seller</button>
 				</div>
 
 				<div class="header-right">
-					<ul class="top-menu">
-						<li>
-							<a href="#">Links</a>
-							<ul class="menus">
-								<li>
-									<div class="header-dropdown">
-										<a href="#">
-											Currency
-											<i class="ri-arrow-down-s-line arrow-down"></i>
-										</a>
-										<div class="header-menu">
-											<ul>
-												<li>
-													<a href="#">Eur</a>
-												</li>
-												<li>
-													<a href="#">Usd</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="header-dropdown">
-										<a href="#">
-											Language
-											<i class="ri-arrow-down-s-line arrow-down"></i>
-										</a>
-										<div class="header-menu">
-											<ul>
-												<li>
-													<a href="#">English</a>
-												</li>
-												<li>
-													<a href="#">French</a>
-												</li>
-												<li>
-													<a href="#">Spanish</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</li>
-								<li class="login">
-									<a href="#signin-modal" data-toggle="modal">
-										Sign in / Sign up
-									</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
+					{user ? (
+						<button class="login" onClick={signInModal}>
+							Customer Login
+						</button>
+					) : (
+						<button class="login" onClick={registerModal}>
+							Customer Register
+						</button>
+					)}
+					{/* {user && user.accessToken && <button class="login">LogOut</button>}
+					{user && !user.accessToken && (
+						<>
+							<button class="login" onClick={signInModal}>
+								Login
+							</button>
+							<button class="login" onClick={registerModal}>
+								Register
+							</button>
+						</>
+					)} */}
 				</div>
+				<Modal open={signInModal} modal={signIn} title="Customer Login">
+					<LoginPage close={signInModal} />
+				</Modal>
+				<Modal
+					open={registerModal}
+					modal={register}
+					title="Customer Registration"
+				>
+					<Register close={registerModal} />
+				</Modal>
+				<Modal open={sellerModal} modal={seller} title="Seller Registration">
+					<SellerPage close={sellerModal} />
+				</Modal>
 			</div>
 		</div>
 	);

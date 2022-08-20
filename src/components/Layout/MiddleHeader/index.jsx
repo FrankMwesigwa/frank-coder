@@ -1,7 +1,27 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import CurrencyFormat from 'react-currency-format';
+import { useSelector, useDispatch } from 'react-redux';
+import { generatePublicUrl } from '../../../helpers/imageUrl';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { removeFromCart } from '../../../store/actions/cartActions';
 
 const MiddleHeader = () => {
+	const { cartItems } = useSelector((state) => state.cart);
+	const dispatch = useDispatch();
+
+	const getTotal = () => {
+		return cartItems.reduce((currentValue, nextValue) => {
+			return currentValue + nextValue.quantity * nextValue.price;
+		}, 0);
+	};
+
+	const removeFromCartHandler = (id) => {
+		dispatch(removeFromCart(id));
+		toast.success('Product successfuly removed from cart');
+	};
+
 	return (
 		<div class="header-middle">
 			<div class="container-fluid">
@@ -11,14 +31,14 @@ const MiddleHeader = () => {
 							<span class="sr-only">Toggle mobile menu</span>
 							<i class="icon-bars"></i>
 						</button>
-						<a href="#" class="logo">
+						<Link to="/" class="logo">
 							<img
 								src="images/logo-2.jpg"
 								alt="Molla Logo"
 								width="105"
 								height="25"
 							/>
-						</a>
+						</Link>
 					</div>
 
 					<div class="col col-lg-9 col-xl-9 col-xxl-10 header-middle-right">
@@ -64,46 +84,98 @@ const MiddleHeader = () => {
 											aria-label="Compare Products"
 										>
 											<i class="icon-random"></i>
-											<span class="compare-txt">Compare</span>
+											<span class="compare-txt">Register Seller</span>
 										</a>
 										<div class="dropdown-menu dropdown-menu-right">
 											<ul class="compare-products">
 												<li class="compare-product">
-													<a href="#" class="btn-remove" title="Remove Product">
-														<i class="icon-close"></i>
-													</a>
 													<h4 class="compare-product-title">
-														<a href="/html/molla/product.html">
-															Blue Night Dress
-														</a>
-													</h4>
-												</li>
-												<li class="compare-product">
-													<a href="#" class="btn-remove" title="Remove Product">
-														<i class="icon-close"></i>
-													</a>
-													<h4 class="compare-product-title">
-														<a href="#">White Long Skirt</a>
+														Do you have products to sell on inthing, kindly
+														click on the register button to be added to our
+														seller database
 													</h4>
 												</li>
 											</ul>
 											<div class="compare-actions">
-												<a href="#" class="action-link">
-													Clear All
-												</a>
 												<a href="#" class="btn btn-outline-primary-2">
-													<span>Compare</span>
-													<i class="icon-long-arrow-right"></i>
+													<span>Register</span>
 												</a>
 											</div>
 										</div>
 									</div>
 
-									<a href="" class="wishlist-link">
-										<i class="icon-heart-o"></i>
-										<span class="wishlist-count">3</span>
-										<span class="wishlist-txt">Wishlist</span>
-									</a>
+									<div class="dropdown cart-dropdown">
+										<a
+											href="#"
+											class="dropdown-toggle"
+											role="button"
+											data-toggle="dropdown"
+											aria-haspopup="true"
+											aria-expanded="false"
+											data-display="static"
+										>
+											<i class="icon-heart-o"></i>
+											<span class="cart-count">{cartItems.length}</span>
+											<span class="cart-txt">WishList</span>
+										</a>
+										<div class="dropdown-menu dropdown-menu-right">
+											<div class="dropdown-cart-products">
+												{cartItems.map((item, i) => (
+													<div class="product">
+														<div class="product-cart-details">
+															<h4 class="product-title">{item.title}</h4>
+															<span class="cart-product-info">
+																<span class="cart-product-qty">
+																	<CurrencyFormat
+																		value={item.price}
+																		displayType="text"
+																		thousandSeparator
+																	/>
+																</span>
+															</span>
+														</div>
+
+														<figure class="product-image-container">
+															<LazyLoadImage
+																src={generatePublicUrl(item.images)}
+																width="160"
+																alt="Product"
+															/>
+														</figure>
+														<button
+															href="#"
+															class="btn-remove"
+															title="Remove Product"
+															onClick={() => removeFromCartHandler(item.id)}
+														>
+															<i class="icon-close"></i>
+														</button>
+													</div>
+												))}
+											</div>
+
+											<div class="dropdown-cart-total">
+												<span>Total</span>
+												<span class="cart-total-price">
+													<CurrencyFormat
+														value={getTotal()}
+														displayType="text"
+														thousandSeparator
+													/>
+												</span>
+											</div>
+
+											<div class="dropdown-cart-action">
+												<Link to="/cart" class="btn btn-primary">
+													View Cart
+												</Link>
+												<Link to="/" class="btn btn-outline-primary-2">
+													<span>Checkout</span>
+													<i class="icon-long-arrow-right"></i>
+												</Link>
+											</div>
+										</div>
+									</div>
 									<div class="dropdown cart-dropdown">
 										<a
 											href="#"
@@ -115,55 +187,54 @@ const MiddleHeader = () => {
 											data-display="static"
 										>
 											<i class="icon-shopping-cart"></i>
-											<span class="cart-count">2</span>
+											<span class="cart-count">{cartItems.length}</span>
 											<span class="cart-txt">Cart</span>
 										</a>
 										<div class="dropdown-menu dropdown-menu-right">
 											<div class="dropdown-cart-products">
-												<div class="product">
-													<div class="product-cart-details">
-														<h4 class="product-title">
-															<a href="#">Beige knitted elastic runner shoes</a>
-														</h4>
-														<span class="cart-product-info">
-															<span class="cart-product-qty">1</span>x 84,000
-														</span>
+												{cartItems.map((item, i) => (
+													<div class="product">
+														<div class="product-cart-details">
+															<h4 class="product-title">{item.title}</h4>
+															<span class="cart-product-info">
+																<span class="cart-product-qty">
+																	<CurrencyFormat
+																		value={item.price}
+																		displayType="text"
+																		thousandSeparator
+																	/>
+																</span>
+															</span>
+														</div>
+
+														<figure class="product-image-container">
+															<LazyLoadImage
+																src={generatePublicUrl(item.images)}
+																width="160"
+																alt="Product"
+															/>
+														</figure>
+														<button
+															href="#"
+															class="btn-remove"
+															title="Remove Product"
+															onClick={() => removeFromCartHandler(item.id)}
+														>
+															<i class="icon-close"></i>
+														</button>
 													</div>
-
-													<figure class="product-image-container">
-														<a href="#" class="product-image">
-															<img src="images/013.jpg" alt="product" />
-														</a>
-													</figure>
-													<a href="#" class="btn-remove" title="Remove Product">
-														<i class="icon-close"></i>
-													</a>
-												</div>
-
-												<div class="product">
-													<div class="product-cart-details">
-														<h4 class="product-title">
-															<a href="#">Blue utility pinafore denim dress</a>
-														</h4>
-														<span class="cart-product-info">
-															<span class="cart-product-qty">1</span>x 76,000
-														</span>
-													</div>
-
-													<figure class="product-image-container">
-														<a href="#" class="product-image">
-															<img src="images/013.jpg" alt="product" />
-														</a>
-													</figure>
-													<a href="#" class="btn-remove" title="Remove Product">
-														<i class="icon-close"></i>
-													</a>
-												</div>
+												))}
 											</div>
 
 											<div class="dropdown-cart-total">
 												<span>Total</span>
-												<span class="cart-total-price">160,000</span>
+												<span class="cart-total-price">
+													<CurrencyFormat
+														value={getTotal()}
+														displayType="text"
+														thousandSeparator
+													/>
+												</span>
 											</div>
 
 											<div class="dropdown-cart-action">
