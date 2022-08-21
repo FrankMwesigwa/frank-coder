@@ -5,23 +5,22 @@ import { useDispatch } from 'react-redux';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import CurrencyFormat from 'react-currency-format';
 import LoadSpinner from '../../components/Spinner';
+import LoginPage from '../../pages/Login';
+import Modal from '../../components/ModalBox';
 import { generatePublicUrl } from '../../helpers/imageUrl';
 import { addToCart } from '../../store/actions/cartActions';
 import { createWishList } from '../../store/actions/wishListActions';
 
 const DetailsTop = ({ product }) => {
-	console.log('product ====>', product);
 	const [related, setRelated] = useState([]);
-	const [loading, setLoading] = useState(false);
+	const [loading, setIsLoading] = useState(false);
 	const [currentImage, setCurrentImage] = useState('');
-	const [color, setColor] = useState('');
 	const [quantity, setQuantity] = useState(1);
-	const [modalIsOpen, setIsOpen] = useState(false);
+	const [signIn, setSignIn] = useState(false);
+
+	const signInModal = () => setSignIn(!signIn);
 
 	const dispatch = useDispatch();
-
-	const openModal = () => setIsOpen(true);
-	const closeModal = () => setIsOpen(false);
 
 	const Wish = () => (
 		<div>
@@ -32,33 +31,33 @@ const DetailsTop = ({ product }) => {
 		</div>
 	);
 
-	const token = localStorage.getItem('token');
-	const phonenumber = localStorage.getItem('phonenumber');
+	const customer = JSON.parse(localStorage.getItem('customer'));
+	const token = localStorage.getItem('customer');
 
 	const checkWishList = (e) => {
 		e.preventDefault();
 		if (token) {
 			wishListHandler();
 		} else {
-			openModal();
+			signInModal();
 		}
 	};
 
 	const wishListHandler = () => {
-		setLoading(true);
+		setIsLoading(true);
 		const data = {
 			id: product._id,
 			title: product.title,
-			image: product.images[0].url,
+			images: product.images[0].filename,
 			price: product.price,
-			phonenumber: phonenumber,
-			description: product.description,
+			email: customer.user.email,
+			phonenumber: customer.user.phonenumber,
 		};
 
 		dispatch(createWishList(data))
 			.then((res) => {
 				toast.success(Wish);
-				setLoading(false);
+				setIsLoading(false);
 			})
 			.catch((e) => {
 				console.log(e);
@@ -89,12 +88,11 @@ const DetailsTop = ({ product }) => {
 		const cat = {
 			id: product._id,
 			title: product.title,
-			images: product.images[0].url,
+			images: product.images[0].filename,
 			price: product.price,
 			discount: product.discount,
 			discountprice: product.discountprice,
-			quantity: quantity,
-			color,
+			quantity: 1,
 		};
 
 		dispatch(addToCart(cat));
@@ -132,6 +130,9 @@ const DetailsTop = ({ product }) => {
 
 	return (
 		<div class="product-details-top">
+			<Modal open={signInModal} modal={signIn} title="Customer Login">
+				<LoginPage close={signInModal} />
+			</Modal>
 			<div class="row">
 				<div class="col-md-6">
 					<div class="product-gallery product-gallery-vertical">

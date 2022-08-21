@@ -1,28 +1,28 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import CurrencyFormat from 'react-currency-format';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import LoginPage from '../../pages/Login';
+import Modal from '../../components/ModalBox';
 import { removeFromCart } from '../../store/actions/cartActions';
 import { generatePublicUrl } from '../../helpers/imageUrl';
 
 const CartInfo = () => {
-	const [modalIsOpen, setIsOpen] = useState(false);
-
-	const openModal = () => setIsOpen(true);
-	const closeModal = () => setIsOpen(false);
-
+	const [signIn, setSignIn] = useState(false);
+	
+	const signInModal = () => setSignIn(!signIn);
 	const history = useHistory();
 
-	const token = localStorage.getItem('token');
+	const token = localStorage.getItem('customer');
 
 	const Checkout = (e) => {
 		e.preventDefault();
 		if (token) {
 			history.push('/checkout');
 		} else {
-			openModal();
+			signInModal();
 		}
 	};
 
@@ -44,6 +44,9 @@ const CartInfo = () => {
 
 	return (
 		<div class="row">
+			<Modal open={signInModal} modal={signIn} title="Customer Login">
+				<LoginPage close={signInModal} />
+			</Modal>
 			<div class="col-lg-9">
 				<table class="table table-cart table-mobile">
 					<thead>
@@ -172,9 +175,12 @@ const CartInfo = () => {
 						</tbody>
 					</table>
 
-					<a href="#" class="btn btn-outline-primary-2 btn-order btn-block">
-						PROCEED TO CHECKOUT
-					</a>
+					<button
+						onClick={Checkout}
+						class="btn btn-outline-primary-2 btn-order btn-block"
+					>
+						Checkout
+					</button>
 				</div>
 			</aside>
 		</div>

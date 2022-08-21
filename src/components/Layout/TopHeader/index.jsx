@@ -5,7 +5,6 @@ import Register from '../../../pages/Login/Register';
 import SellerPage from '../../../pages/Login/Seller.jsx';
 
 const TopHeader = () => {
-	const [user, setUser] = useState(true);
 	const [signIn, setSignIn] = useState(false);
 	const [seller, setSeller] = useState(false);
 	const [register, setRegister] = useState(false);
@@ -14,7 +13,12 @@ const TopHeader = () => {
 	const registerModal = () => setRegister(!register);
 	const sellerModal = () => setSeller(!seller);
 
-	// const user = JSON.parse(localStorage.getItem('customer'));
+	const user = JSON.parse(localStorage.getItem('customer'));
+
+	const logOut = () => {
+		localStorage.clear();
+		window.location.reload();
+	};
 
 	return (
 		<div class="header-top">
@@ -25,16 +29,10 @@ const TopHeader = () => {
 
 				<div class="header-right">
 					{user ? (
-						<button class="login" onClick={signInModal}>
-							Customer Login
+						<button class="login" onClick={logOut}>
+							LogOut
 						</button>
 					) : (
-						<button class="login" onClick={registerModal}>
-							Customer Register
-						</button>
-					)}
-					{/* {user && user.accessToken && <button class="login">LogOut</button>}
-					{user && !user.accessToken && (
 						<>
 							<button class="login" onClick={signInModal}>
 								Login
@@ -43,7 +41,7 @@ const TopHeader = () => {
 								Register
 							</button>
 						</>
-					)} */}
+					)}
 				</div>
 				<Modal open={signInModal} modal={signIn} title="Customer Login">
 					<LoginPage close={signInModal} />

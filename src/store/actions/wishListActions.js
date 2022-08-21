@@ -1,4 +1,4 @@
-import axios from 'axios';
+import API from '../../helpers/api';
 import {
 	CREATE_WISHLIST,
 	GET_WISHLIST,
@@ -9,7 +9,7 @@ import {
 
 export const createWishList = (data) => async (dispatch) => {
 	try {
-		const res = await axios.post(`${process.env.REACT_APP_API}/wishlist`, data);
+		const res = await API.post(`/wishlist`, data);
 
 		console.log('wishlist data added ====>', res.data);
 
@@ -24,7 +24,7 @@ export const createWishList = (data) => async (dispatch) => {
 
 export const getWishList = () => async (dispatch) => {
 	try {
-		const res = await axios.get(`${process.env.REACT_APP_API}/wishlist`);
+		const res = await API.get('/wishlist');
 		console.log('reducer data ==>', res);
 
 		dispatch({
