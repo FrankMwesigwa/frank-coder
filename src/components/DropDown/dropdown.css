@@ -1,0 +1,15 @@
+.drop-down{
+    position: absolute;
+    left: -1em;
+    background-color: black;
+    border: 2px solid black;
+    z-index: 1;
+    display: none;
+}
+.drop-down-products {
+    padding: 10px 10px
+}
+.middle-icon .drop-down:hover {
+    display: block;
+
+}

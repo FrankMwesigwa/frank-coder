@@ -4,6 +4,8 @@ import LoginPage from '../../../pages/Login';
 import Register from '../../../pages/Login/Register';
 import SellerPage from '../../../pages/Login/Seller.jsx';
 
+import './topheader.css';
+
 const TopHeader = () => {
 	const [signIn, setSignIn] = useState(false);
 	const [seller, setSeller] = useState(false);
@@ -21,42 +23,43 @@ const TopHeader = () => {
 	};
 
 	return (
-		<div class="header-top">
-			<div class="container">
-				<div class="header-left">
-					<button onClick={sellerModal}>Register As a Seller</button>
+		<div className="th-header">
+			<div className="th-container">
+				<div className="th-logo">
+					<button className="th-btn-seller" onClick={sellerModal}>
+						Sell on inthing
+					</button>
 				</div>
-
-				<div class="header-right">
+				<div className="th-items">
 					{user ? (
-						<button class="login" onClick={logOut}>
+						<button className="th-btn" onClick={logOut}>
 							LogOut
 						</button>
 					) : (
 						<>
-							<button class="login" onClick={signInModal}>
-								Login
-							</button>
-							<button class="login" onClick={registerModal}>
+							<button className="th-btn" onClick={registerModal}>
 								Register
+							</button>
+							<button className="th-btn" onClick={signInModal}>
+								Login
 							</button>
 						</>
 					)}
 				</div>
-				<Modal open={signInModal} modal={signIn} title="Customer Login">
-					<LoginPage close={signInModal} />
-				</Modal>
-				<Modal
-					open={registerModal}
-					modal={register}
-					title="Customer Registration"
-				>
-					<Register close={registerModal} />
-				</Modal>
-				<Modal open={sellerModal} modal={seller} title="Seller Registration">
-					<SellerPage close={sellerModal} />
-				</Modal>
 			</div>
+			<Modal open={signInModal} modal={signIn} title="Customer Login">
+				<LoginPage close={signInModal} />
+			</Modal>
+			<Modal
+				open={registerModal}
+				modal={register}
+				title="Customer Registration"
+			>
+				<Register close={registerModal} />
+			</Modal>
+			<Modal open={sellerModal} modal={seller} title="Vendor Sign Up Form">
+				<SellerPage close={sellerModal} />
+			</Modal>
 		</div>
 	);
 };

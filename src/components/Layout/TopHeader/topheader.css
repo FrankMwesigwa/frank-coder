@@ -1,0 +1,34 @@
+.th-header {
+    height: 50px;
+    background-color: bisque;
+    display: flex;
+    justify-content: center;
+    /* position: fixed; */
+}
+.fixed-top {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	z-index: 1030;
+}
+.th-container {
+    width: 100%;
+    max-width: 1024px;
+    /* max-width: 1200px; */
+    margin: 5px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.th-btn {
+    margin-left: 10px;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.th-btn-seller {
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}

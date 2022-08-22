@@ -6,16 +6,19 @@ import Signup from './Footer/Signup';
 import FooterMiddle from './Footer/FooterMiddle';
 import FooterBottom from './Footer/FooterBottom';
 
+import './'
+
 const Layout = ({ children }) => {
 	return (
-		<div className="page-wrapper">
-			<header class="header header-14">
-				<TopHeader />
-				<MiddleHeader />
+		<div className="layout-container">
+
+			<TopHeader />
+			<MiddleHeader />
+
+				
 				<HeaderMain />
-			</header>
-			<main className="main">
-				<div class="mb-lg-2"></div>
+			<main className="layout-main">
+				<div class=""></div>
 				{children}
 			</main>
 			<footer className="footer">

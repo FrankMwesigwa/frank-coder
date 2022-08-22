@@ -1,11 +1,12 @@
 import React from 'react';
 import MegaMen from './MegaMen';
 
+import './header-main.css'
+
 const HeaderMain = () => {
 	return (
-		<div class="sticky-wrapper">
-			<div class="header-bottom sticky-header">
-				<div class="container-fluid">
+			<div class="header-bottom">
+				<div class="container-header">
 					<div class="row">
 						<div class="col-auto col-lg-3 col-xl-3 col-xxl-2 header-left">
 							<div
@@ -328,7 +329,6 @@ const HeaderMain = () => {
 					</div>
 				</div>
 			</div>
-		</div>
 	);
 };
 

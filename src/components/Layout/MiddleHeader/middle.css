@@ -1,0 +1,88 @@
+.header-middle {
+	/* height: 80px; */
+	background-color: black;
+	color: white;
+	display: flex;
+	justify-content: center;
+}
+.fixed-top-1 {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 1030;
+}
+.middle-container {
+	width: 100%;
+	max-width: 1024px;
+	margin: 0px 5px;
+}
+.middle-list {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.middle-logo {
+	display: flex;
+	align-items: center;
+}
+.middle-search-box {
+	display: flex;
+	align-items: center;
+}
+.middle-icons {
+	display: flex;
+}
+.middle-icon {
+	position: relative;
+	padding-left: 2.5rem;
+}
+.icon-size {
+	font-size: 3rem;
+}
+.count {
+	top: 1rem;
+	left: 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1;
+	color: #fff;
+	background-color: red;
+	position: absolute;
+}
+.search-box{
+    margin-bottom: 10px;
+}
+form {
+	position: relative;
+}
+
+form.search-input input {
+	line-height: 3.25em;
+	padding: 0 7em 0 2em;
+	border: 0;
+	outline: 0;
+	width: 98%;
+	border-radius: 7px;
+}
+form.search-input button {
+	position: absolute;
+	top: 0;
+	padding: 0.22em 1.5em;
+	font-size: 1em;
+	height: 100%;
+	right: 0.5em;
+	border: 0;
+	outline: 0;
+	font-size: 0.875em;
+	background-color: red;
+	color: white;
+	border-radius: 0 7px 7px 0;
+	cursor: pointer;
+}

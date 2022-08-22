@@ -11,7 +11,22 @@ const Seller = () => {
 						role="tabpanel"
 						aria-labelledby="signin-tab"
 					>
+						<p>
+							Thank you for expressing interest in doing business with
+							inthing.ug. To enable us get in touch with you shortly kindly fill
+							in the details below:
+						</p>
 						<form action="#">
+							<div class="form-group">
+								<label for="register-email">Full Names *</label>
+								<input
+									type="email"
+									class="form-control"
+									id="register-email"
+									name="register-email"
+									required=""
+								/>
+							</div>
 							<div class="form-group">
 								<label for="register-email">Your email address *</label>
 								<input
@@ -24,7 +39,7 @@ const Seller = () => {
 							</div>
 
 							<div class="form-group">
-								<label for="register-password">Password *</label>
+								<label for="register-password">Business Name *</label>
 								<input
 									type="password"
 									class="form-control"
@@ -35,7 +50,7 @@ const Seller = () => {
 							</div>
 
 							<div class="form-group">
-								<label for="register-password">Full Names *</label>
+								<label for="register-password">Location *</label>
 								<input
 									type="text"
 									class="form-control"
@@ -47,6 +62,19 @@ const Seller = () => {
 
 							<div class="form-group">
 								<label for="register-password">Phonenumber *</label>
+								<input
+									type="text"
+									class="form-control"
+									id="register-password"
+									name="register-password"
+									required=""
+								/>
+							</div>
+
+							<div class="form-group">
+								<label for="register-password">
+									What Items do you deal in *
+								</label>
 								<input
 									type="text"
 									class="form-control"
